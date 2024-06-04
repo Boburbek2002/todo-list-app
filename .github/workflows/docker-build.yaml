@@ -29,7 +29,7 @@ jobs:
           tags: j0n1bek/todo-list-app:latest
       - uses: action-hub/kubectl@master
         env:
-          KUBE_CONFIG: ${{secret.KUBE_CONFIG}}
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       - uses: action-hub/kubectl@master
         with:
           args: apply -f ./manifests/
