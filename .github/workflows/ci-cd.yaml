@@ -27,3 +27,9 @@ jobs:
           context: .
           push: true
           tags: boburbek2020/todo-list-app:latest
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      - uses: actions-hub/kubectl@master
+        with:
+          args: apply -f ./manifests/

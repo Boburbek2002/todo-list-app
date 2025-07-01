@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: todo-list-app
   name: todo-list-app
@@ -10,12 +9,14 @@ spec:
   selector:
     matchLabels:
       app: todo-list-app
+  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: todo-list-app
     spec:
       containers:
-      - image: j0n1bek/todo-list-app:latest
+      - image: boburbek2020/todo-list-app:latest
         name: todo-list-app
+        ports:
+        - containerPort: 3000
