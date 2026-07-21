@@ -11,6 +11,7 @@ env:
   CI_REGISTRY: ${{ secrets.CI_REGISTRY }}
   CI_REGISTRY_USER: ${{ secrets.CI_REGISTRY_USER }}
   CI_REGISTRY_PASSWORD: ${{ secrets.CI_REGISTRY_PASSWORD }}
+  REPO_NAME: to-do
   IMAGE_NAME: to-do-list-app
   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
  
@@ -26,10 +27,10 @@ jobs:
         run: echo "${{ env.CI_REGISTRY_PASSWORD }}" | docker login -u "${{ env.CI_REGISTRY_USER }}" --password-stdin ${{ env.CI_REGISTRY }}
 
       - name: Build image
-        run: docker build -t ${{ env.CI_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+        run: docker build -t ${{ env.CI_REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
 
       - name: Push image
-        run: docker push ${{ env.CI_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        run: docker push ${{ env.CI_REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
 # name: ci
 
