@@ -26,11 +26,12 @@ jobs:
       - name: Login to Registry
         run: echo "${{ env.CI_REGISTRY_PASSWORD }}" | docker login -u "${{ env.CI_REGISTRY_USER }}" --password-stdin ${{ env.CI_REGISTRY }}
 
-      - name: Build image
-        run: docker build -t ${{ env.CI_REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
-
-      - name: Push image
-        run: docker push ${{ env.CI_REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: "${{ env.CI_REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
 
 # name: ci
 
