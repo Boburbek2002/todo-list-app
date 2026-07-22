@@ -26,7 +26,7 @@ jobs:
       - name: Login to Registry
         run: echo "${{ env.CI_REGISTRY_PASSWORD }}" | docker login -u "${{ env.CI_REGISTRY_USER }}" --password-stdin ${{ env.CI_REGISTRY }}
 
-            - name: Build and push Docker image
+      - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
