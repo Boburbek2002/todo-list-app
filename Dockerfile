@@ -1,6 +1,8 @@
 FROM node:17-alpine
 WORKDIR /app
-COPY package.json .
+ENV CHOKIDAR_USEPOLLING=true
+ENV WATCHPACK_POLLING=true
+COPY package*.json .
 RUN npm install ajv-formats --save
 COPY . .
 EXPOSE 3000
